@@ -1,4 +1,4 @@
-package model
+package com.suellencolangelo.forum.model
 
 import java.time.LocalDateTime
 

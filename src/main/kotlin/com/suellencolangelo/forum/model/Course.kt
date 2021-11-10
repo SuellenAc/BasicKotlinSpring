@@ -1,4 +1,4 @@
-package model
+package com.suellencolangelo.forum.model
 
 data class Course(
     val id: Long? = null,

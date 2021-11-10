@@ -1,4 +1,4 @@
-package model
+package com.suellencolangelo.forum.model
 
 enum class StatusTopic {
     NOT_ANSWERED,
