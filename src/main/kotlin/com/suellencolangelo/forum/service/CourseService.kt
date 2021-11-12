@@ -1,6 +1,6 @@
 package com.suellencolangelo.forum.service
 
-import com.suellencolangelo.forum.model.Course
+import com.suellencolangelo.forum.model.domain.Course
 import org.springframework.stereotype.Service
 
 @Service

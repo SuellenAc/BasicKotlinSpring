@@ -1,4 +1,4 @@
-package com.suellencolangelo.forum.dto
+package com.suellencolangelo.forum.model.dto
 
 data class TopicDto(
     val title: String,

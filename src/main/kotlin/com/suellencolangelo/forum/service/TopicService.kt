@@ -1,10 +1,10 @@
 package com.suellencolangelo.forum.service
 
-import com.suellencolangelo.forum.dto.TopicDto
-import com.suellencolangelo.forum.model.Answer
-import com.suellencolangelo.forum.model.Course
-import com.suellencolangelo.forum.model.Topic
-import com.suellencolangelo.forum.model.User
+import com.suellencolangelo.forum.model.dto.TopicDto
+import com.suellencolangelo.forum.model.domain.Answer
+import com.suellencolangelo.forum.model.domain.Course
+import com.suellencolangelo.forum.model.domain.Topic
+import com.suellencolangelo.forum.model.domain.User
 import org.springframework.stereotype.Service
 
 @Service
