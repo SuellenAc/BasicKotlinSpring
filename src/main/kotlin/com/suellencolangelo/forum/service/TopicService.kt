@@ -1,5 +1,6 @@
 package com.suellencolangelo.forum.service
 
+import com.suellencolangelo.forum.dto.TopicDto
 import com.suellencolangelo.forum.model.Answer
 import com.suellencolangelo.forum.model.Course
 import com.suellencolangelo.forum.model.Topic
@@ -7,7 +8,10 @@ import com.suellencolangelo.forum.model.User
 import org.springframework.stereotype.Service
 
 @Service
-class TopicService {
+class TopicService(
+    private val courseService: CourseService,
+    private val authorService: AuthorService
+) {
 
     private val dummyTopic: Topic
         get() {
@@ -29,7 +33,7 @@ class TopicService {
             return topic.copy(answers = listOf(makeDummyAnswer(topic)))
         }
 
-    private val topics: List<Topic> = listOf(dummyTopic, dummyTopic, dummyTopic)
+    private val topics: MutableList<Topic> = mutableListOf(dummyTopic, dummyTopic, dummyTopic)
 
     private fun makeDummyAnswer(topic: Topic): Answer = Answer(
         id = 1,
@@ -51,5 +55,15 @@ class TopicService {
 
     fun searchByAnswerFromTopic(id: Long): List<Answer> {
         return topics.firstOrNull { it.id == id }?.answers.orEmpty()
+    }
+
+    fun register(dto: TopicDto) {
+        val topic = dummyTopic.copy(
+            title = dto.title,
+            message = dto.message,
+            course =  courseService.searchById(dto.courseId),
+            author = authorService.searchById(dto.authorId)
+        )
+        topics.add(topic)
     }
 }
