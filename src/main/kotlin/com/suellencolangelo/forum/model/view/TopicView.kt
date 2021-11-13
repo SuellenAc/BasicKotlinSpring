@@ -11,11 +11,3 @@ data class TopicView(
     val status: StatusTopic,
     val createdAt: LocalDateTime
 )
-
-fun Topic.toView() = TopicView(
-    id = this.id,
-    title = this.title,
-    message = this.message,
-    status = this.status,
-    createdAt = this.createdAt
-)
