@@ -7,6 +7,7 @@ import com.suellencolangelo.forum.model.view.AnswerView
 import com.suellencolangelo.forum.model.view.TopicView
 import com.suellencolangelo.forum.service.TopicService
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/topics") // URI
@@ -33,7 +34,7 @@ class TopicController(
     }
 
     @PostMapping
-    fun register(@RequestBody dto: TopicForm) {
+    fun register(@RequestBody @Valid dto: TopicForm) {
         service.register(dto)
     }
 
