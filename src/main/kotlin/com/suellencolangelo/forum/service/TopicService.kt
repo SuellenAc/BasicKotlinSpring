@@ -1,6 +1,6 @@
 package com.suellencolangelo.forum.service
 
-import com.suellencolangelo.forum.model.dto.TopicDto
+import com.suellencolangelo.forum.model.form.TopicForm
 import com.suellencolangelo.forum.model.domain.Answer
 import com.suellencolangelo.forum.model.domain.Course
 import com.suellencolangelo.forum.model.domain.Topic
@@ -57,7 +57,7 @@ class TopicService(
         return topics.firstOrNull { it.id == id }?.answers.orEmpty()
     }
 
-    fun register(dto: TopicDto) {
+    fun register(dto: TopicForm) {
         val topic = dummyTopic.copy(
             title = dto.title,
             message = dto.message,

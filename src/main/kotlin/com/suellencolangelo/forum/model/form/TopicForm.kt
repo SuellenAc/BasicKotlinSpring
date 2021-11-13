@@ -1,6 +1,6 @@
-package com.suellencolangelo.forum.model.dto
+package com.suellencolangelo.forum.model.form
 
-data class TopicDto(
+data class TopicForm(
     val title: String,
     val message: String,
     val authorId: Long,

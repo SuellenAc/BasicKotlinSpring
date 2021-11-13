@@ -1,7 +1,7 @@
 package com.suellencolangelo.forum.controller
 
-import com.suellencolangelo.forum.model.dto.TopicDto
-import com.suellencolangelo.forum.model.domain.Answer
+import com.suellencolangelo.forum.model.form.TopicForm
+import com.suellencolangelo.forum.model.view.AnswerView
 import com.suellencolangelo.forum.model.view.TopicView
 import com.suellencolangelo.forum.model.view.toView
 import com.suellencolangelo.forum.service.TopicService
@@ -23,12 +23,12 @@ class TopicController(private val service: TopicService) {
     }
 
     @GetMapping("/{id}/answers")
-    fun searchByAnswerFromTopic(@PathVariable id: Long): List<Answer> {
-        return service.searchByAnswerFromTopic(id)
+    fun searchByAnswerFromTopic(@PathVariable id: Long): List<AnswerView> {
+        return service.searchByAnswerFromTopic(id).map { it.toView() }
     }
 
     @PostMapping
-    fun register(@RequestBody dto: TopicDto) {
+    fun register(@RequestBody dto: TopicForm) {
         service.register(dto)
     }
 
