@@ -5,6 +5,7 @@ import com.suellencolangelo.forum.model.domain.Answer
 import com.suellencolangelo.forum.model.domain.Course
 import com.suellencolangelo.forum.model.domain.Topic
 import com.suellencolangelo.forum.model.domain.User
+import com.suellencolangelo.forum.model.form.UpdateTopicForm
 import org.springframework.stereotype.Service
 
 @Service
@@ -65,5 +66,12 @@ class TopicService(
             author = authorService.searchById(dto.authorId)
         )
         topics.add(topic)
+    }
+
+    fun update(form: UpdateTopicForm) {
+        val oldTopic = searchById(form.id)
+        val updatedTopic = oldTopic?.copy(title = form.title, message = form.message)
+        topics.remove(oldTopic)
+        updatedTopic?.let { topics.add(it) }
     }
 }

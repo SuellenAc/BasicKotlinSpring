@@ -3,6 +3,7 @@ package com.suellencolangelo.forum.controller
 import com.suellencolangelo.forum.mapper.AnswerToViewMapper
 import com.suellencolangelo.forum.mapper.TopicToViewMapper
 import com.suellencolangelo.forum.model.form.TopicForm
+import com.suellencolangelo.forum.model.form.UpdateTopicForm
 import com.suellencolangelo.forum.model.view.AnswerView
 import com.suellencolangelo.forum.model.view.TopicView
 import com.suellencolangelo.forum.service.TopicService
@@ -34,8 +35,13 @@ class TopicController(
     }
 
     @PostMapping
-    fun register(@RequestBody @Valid dto: TopicForm) {
-        service.register(dto)
+    fun register(@RequestBody @Valid form: TopicForm) {
+        service.register(form)
+    }
+
+    @PutMapping
+    fun update(@RequestBody @Valid form: UpdateTopicForm) {
+        service.update(form)
     }
 
 }
