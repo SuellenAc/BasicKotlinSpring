@@ -1,5 +1,6 @@
 package com.suellencolangelo.forum.service
 
+import com.suellencolangelo.forum.exception.NotFoundException
 import com.suellencolangelo.forum.model.form.TopicForm
 import com.suellencolangelo.forum.model.domain.Answer
 import com.suellencolangelo.forum.model.domain.Course
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service
 class TopicService(
     private val courseService: CourseService,
     private val authorService: AuthorService,
+    private val notFoundMessage: String = "Tópico não encontrado",
 ) {
 
     private val dummyTopic: Topic
@@ -50,8 +52,12 @@ class TopicService(
 
     fun list(): List<Topic> = topics
 
-    fun searchById(id: Long): Topic? {
-        return topics.firstOrNull { it.id == id }
+    fun searchById(id: Long): Topic {
+        return try {
+            topics.first { it.id == id }
+        } catch (exception: Exception) {
+            throw NotFoundException(notFoundMessage)
+        }
     }
 
     fun searchByAnswerFromTopic(id: Long): List<Answer> {
@@ -71,9 +77,9 @@ class TopicService(
 
     fun update(form: UpdateTopicForm): Topic? {
         val oldTopic = searchById(form.id)
-        val updatedTopic = oldTopic?.copy(title = form.title, message = form.message)
+        val updatedTopic = oldTopic.copy(title = form.title, message = form.message)
         topics.remove(oldTopic)
-        updatedTopic?.let { topics.add(it) }
+        updatedTopic.let { topics.add(it) }
         return updatedTopic
     }
 
