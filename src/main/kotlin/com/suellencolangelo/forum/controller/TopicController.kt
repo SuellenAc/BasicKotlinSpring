@@ -42,15 +42,17 @@ class TopicController(
         uriBuilder: UriComponentsBuilder,
         @RequestBody @Valid form: TopicForm
     ): ResponseEntity<TopicView> {
-        val topicView = service.register(form)
-        val uri = uriBuilder.path("/topics/${topicView.id}").build().toUri()
-        return ResponseEntity.created(uri).body(topicView)
+        return service.register(form).let { topic->
+            val uri = uriBuilder.path("/topics/${topic.id}").build().toUri()
+             ResponseEntity.created(uri).body(topicToViewMapper.mapFrom(topic))
+        }
     }
 
     @PutMapping
     fun update(@RequestBody @Valid form: UpdateTopicForm): ResponseEntity<TopicView>? {
-        val topicView = service.update(form)
-        return topicView?.let { ResponseEntity.ok(it) }
+        return service.update(form)?.let { topic ->
+            ResponseEntity.ok(topicToViewMapper.mapFrom(topic))
+        }
     }
 
     @DeleteMapping("/{id}")
