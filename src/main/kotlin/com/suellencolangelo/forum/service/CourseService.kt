@@ -20,7 +20,9 @@ class CourseService(private val courseFormToDomainMapper: CourseFormToDomainMapp
 
     fun list(): List<Course> = courses
 
-    fun register(dto: CourseForm) {
-        courses.add(courseFormToDomainMapper.mapFrom(dto))
+    fun register(from: CourseForm): Course {
+        val course = courseFormToDomainMapper.mapFrom(from)
+        courses.add(course)
+        return course
     }
 }

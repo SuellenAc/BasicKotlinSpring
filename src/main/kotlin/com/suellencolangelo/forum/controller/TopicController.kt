@@ -42,9 +42,9 @@ class TopicController(
         uriBuilder: UriComponentsBuilder,
         @RequestBody @Valid form: TopicForm
     ): ResponseEntity<TopicView> {
-        return service.register(form).let { topic->
+        return service.register(form).let { topic ->
             val uri = uriBuilder.path("/topics/${topic.id}").build().toUri()
-             ResponseEntity.created(uri).body(topicToViewMapper.mapFrom(topic))
+            ResponseEntity.created(uri).body(topicToViewMapper.mapFrom(topic))
         }
     }
 
