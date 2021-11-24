@@ -7,7 +7,10 @@ import com.suellencolangelo.forum.model.form.UpdateTopicForm
 import com.suellencolangelo.forum.model.view.AnswerView
 import com.suellencolangelo.forum.model.view.TopicView
 import com.suellencolangelo.forum.service.TopicService
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.util.UriComponentsBuilder
 import javax.validation.Valid
 
 @RestController
@@ -35,13 +38,25 @@ class TopicController(
     }
 
     @PostMapping
-    fun register(@RequestBody @Valid form: TopicForm) {
-        service.register(form)
+    fun register(
+        uriBuilder: UriComponentsBuilder,
+        @RequestBody @Valid form: TopicForm
+    ): ResponseEntity<TopicView> {
+        val topicView = service.register(form)
+        val uri = uriBuilder.path("/topics/${topicView.id}").build().toUri()
+        return ResponseEntity.created(uri).body(topicView)
     }
 
     @PutMapping
-    fun update(@RequestBody @Valid form: UpdateTopicForm) {
-        service.update(form)
+    fun update(@RequestBody @Valid form: UpdateTopicForm): ResponseEntity<TopicView>? {
+        val topicView = service.update(form)
+        return topicView?.let { ResponseEntity.ok(it) }
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun delete(@PathVariable id: Long) {
+        service.delete(id)
     }
 
 }
