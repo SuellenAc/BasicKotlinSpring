@@ -4,13 +4,7 @@ Projeto desenvolvido no curso - Api Rest com Kotlin e spring boot ( camada web )
 
 # Notas de Aulas
 
-**Conteúdo**
-
-[TOCM]
-
-[TOC]
-
-##Aula 1 - Introdução ao desenvolvimento de apis
+## Aula 1 - Introdução ao desenvolvimento de apis
 
 Arquitetura em 3 camadas ( Arquitetura App Web Tradicional ) 
 Client - Server - database
@@ -32,7 +26,7 @@ Trafegando uma representação do recurso armazenado, traduzido em um formato de
 
 A comunicação ocorre de forma stateless, ou seja, ela não guarda estado. Cada requisição é única. Importante para escalabilidade. 
 
-##Aula 2 - Criando o projeto 
+## Aula 2 - Criando o projeto 
 
 Site para gerar o projeto inicial do spring - start.spring.io
 (Spring web, spring boot devTools , Validation ) 
@@ -41,11 +35,11 @@ Setup inicial do projeto. Adição de Hello World.
 
 Adição de anotação para mapear o recurso e anotação chamada do método que retorna um get na API 
 
-##Aula 3 - Classes de domínio
+## Aula 3 - Classes de domínio
 
 Criação dos modelos de domínio do projeto. 
 
-##Aula 4 - Controllers
+## Aula 4 - Controllers
  
 Criando o controller para gerenciar e devolver as informações da classe de domínio topic 
 
@@ -53,7 +47,7 @@ Spring usa jackson para converter os objetos para o mediatype json. Conversão �
 
 Dúvidas: Como trocar a lib padrão que prove o json? Como customizar algum campo ? 
 
-##Aula 5 - Injeção de dependencias
+## Aula 5 - Injeção de dependencias
 
 Spring já tem o conceito de injeção de dependências através de anotações 
 Para classes do tipo service usar a anotação (Service) 
@@ -71,44 +65,44 @@ Adicionando método na classe TopicController.kt para buscar por um tópico por 
 Esse método precisa da anotação -  **GetMapping("/{id}")** para indicar ao spring que a URI desse mapeamento aceita um path com o id do tópico a ser pesquisado.
 Para linkar o id do getMapping com o id do método utilizamos a anotação - **PathVariable**
 
-##Aula 7 - PostMapping
+## Aula 7 - PostMapping
 
 Criando um método para cadastrar informações usando **PostMapping** para indicar que aquele método é do tipo post e **RequestBody** para indicar o parâmetro que deve ser recebido no corpo da requisição
 
-##Aula 8 - Postman
+## Aula 8 - Postman
 
 Ferramenta para teste de api - Postman
 
-##Aula 9 - DTOs
+## Aula 9 - DTOs
 
 Criando um objeto intermediário para passar como parâmetro do método POST
 
 
-##Aula 10 - DTOs continuação
+## Aula 10 - DTOs continuação
 
 
 Utilizar na entrada e saída de dados - Data transfer objects
 
-##Aula  11 - Mappers
+## Aula  11 - Mappers
 
 Criação de Mappers
 
-##Aula 12 - Bean Validation
+## Aula 12 - Bean Validation
 
 Bean validation biblioteca para validação de formulários baseado em anotações. 
 Adicionar anotações aos parâmetros da classe DTO e a anotação Valid na função POST
 
 Para data class adicionar field:<NomeAnotação>
 
-##Aula 13 - Put
+## Aula 13 - Put
 
 PutMapping - Novo objeto DTO para atualização dos dados. 
 
-##Aula 14 - Delete
+## Aula 14 - Delete
 
 DeleteMapping - Excluir um tópico
 
-##Aula 15 - Melhorando a resposta da API
+## Aula 15 - Melhorando a resposta da API
 
 Melhorias na APi - Retorno da resposta HTTP 
 
@@ -126,21 +120,22 @@ Referência:
 https://martinfowler.com/articles/richardsonMaturityModel.html
 
 
-#Error Handling
+# Error Handling
 
-##Aula 1 - Introdução
+
+## Aula 1 - Introdução
 
 Introdução: Melhorias em relação a quando erros acontecem para não retornar a stackTrace para o cliente.
 
-##Aula 2  - Tratamento de erros com RestControllerAdvice
+## Aula 2  - Tratamento de erros com RestControllerAdvice
 
 Tratamento de erros específicos - RestControllerAdvice ( classe )  e ExceptionHandler ( método )
 
-##Aula 3 - Tratamento de erros genéricos
+## Aula 3 - Tratamento de erros genéricos
 
 Tratamento de erros genéricos 
 
-##Aula 4 - Tratamento de erros em formulários
+## Aula 4 - Tratamento de erros em formulários
 
 Tratamento de erros em cadastro de formulários 
 
