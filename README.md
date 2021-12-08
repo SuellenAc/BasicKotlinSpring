@@ -56,7 +56,7 @@ Regras de negócio ficam no service
 
 Dúvida: Como o spring faz a injeção de dependências? ( Service locator? ou um padrão parecido com o utilizado pelo Dagger 2? 
 
-##Aula 6 - Parâmetros na URI
+## Aula 6 - Parâmetros na URI
 
 
 Parâmetros dinâmicos no GET (Path) - GetMapping("/{id}")
